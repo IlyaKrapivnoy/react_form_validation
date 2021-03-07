@@ -1,13 +1,14 @@
 import React from 'react'
 import useForm from './useForm'
+import validate from './ValidateInfo'
 
 const FormSignup = () => {
-    const {handleChange, values} = useForm();
+    const { handleChange, values, handleSubmit, errors } = useForm(validate);
 
 
     return (
         <div className="form-content-right">
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit}>
                 <h1>
                 Get started with us today! Create your account by filling out the information below.
                 </h1>
@@ -27,6 +28,7 @@ const FormSignup = () => {
                         value={values.username}
                         onChange={handleChange}
                     />
+                    {errors.username && <p>{ errors.username }</p>}
                 </div>
                 <div className="form-inputs">
                     <label 
@@ -44,6 +46,7 @@ const FormSignup = () => {
                         value={values.email}
                         onChange={handleChange}
                     />
+                    {errors.email && <p>{ errors.email }</p>}
                 </div>
                 <div className="form-inputs">
                     <label 
@@ -61,6 +64,7 @@ const FormSignup = () => {
                         value={values.password}
                         onChange={handleChange}
                     />
+                    {errors.password && <p>{ errors.password }</p>}
                 </div>
                 <div className="form-inputs">
                     <label 
@@ -71,13 +75,14 @@ const FormSignup = () => {
                     </label>
                     <input 
                         id="password2"
-                        type="password2" 
+                        type="password" 
                         name="password2" 
                         className="form-input" 
                         placeholder="Enter your password"
                         value={values.password2}
                         onChange={handleChange}
                     />
+                    {errors.password2 && <p>{ errors.password2 }</p>}
                 </div>
                 <button className="form-input-btn" type="submit">
                     Sign up
