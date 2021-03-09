@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import useForm from './useForm'
 import validate from './ValidateInfo'
 import './Form.css'
+import InputMask from 'react-input-mask' 
+ 
 
 const FormSignup = ({ submitForm }) => {
     const { handleChange, values, handleSubmit, errors } = useForm(submitForm, validate);
@@ -31,6 +33,22 @@ const FormSignup = ({ submitForm }) => {
                     />
                     {errors.username && <p>{ errors.username }</p>}
                 </div>
+
+                
+                <div className="form-inputs">
+                    <label 
+                        htmlFor="phone" 
+                        className="form-label"
+                        >
+                            Phone
+                    </label>
+                <InputMask 
+                    className="form-input"  
+                    mask="999-999-9999" 
+                    maskChar=" "
+                    placeholder="999-999-9999" 
+                    />
+                </div>
                 <div className="form-inputs">
                     <label 
                         htmlFor="email" 
@@ -49,6 +67,7 @@ const FormSignup = ({ submitForm }) => {
                     />
                     {errors.email && <p>{ errors.email }</p>}
                 </div>
+                 
                 <div className="form-inputs">
                     <label 
                         htmlFor="password" 
